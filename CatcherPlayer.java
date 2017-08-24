@@ -75,81 +75,64 @@ public class CatcherPlayer extends Player
       speedY = speedX * m;
       
       //Bounce off walls
-      if (x < field.minX+3 && speedX < 0)
-      {
+      if (x < field.minX+3 && speedX < 0){
         speedX *= -1;
       }
-      if (x > field.maxX/2 && speedX > 0)
-      {
+      if (x > field.maxX/2 && speedX > 0){
         speedX *= -1;
       }
-      if (y < field.minY+3 && speedY < 0)
-      {
+      if (y < field.minY+3 && speedY < 0){
         speedY *= -1;
       }
-      if (y > field.maxY-19 && speedY > 0)
-      {
+      if (y > field.maxY-19 && speedY > 0){
         speedY *=-1;
       }
       
-      if (x > x2)  //if behind runner, compensate
-      {
-        if (teamOne)
-        {
+      if (x > x2){  //if behind runner, compensate
+        if (teamOne){
           speedX *= -1;
           speedY *= -1;
         }
-        else
-        {
+        else{
           speedY *= -1;
         }
       }
-      if (x < x2 && !teamOne)
-      {
+      if (x < x2 && !teamOne){
         speedX *= -1;
       }
       
       //if caught, find a new target
-      if (teamOne)
-      {
-        if (field.catchOpponent(this, (Player)field.getTeam2().get(this.target)) == true)
-        {
+      if (teamOne){
+        if (field.catchOpponent(this, (Player)field.getTeam2().get(this.target)) == true){
           this.targetted = false;
         }
       }
-      else
-      {
-        if (field.catchOpponent(this, (Player)field.getTeam1().get(this.target)))
-        {
+      else{
+        if (field.catchOpponent(this, (Player)field.getTeam1().get(this.target))){
           this.targetted = false;
         }
       }
     }
     //if no target, stop moving
-    else
-    {
+    else{
       speedX = 0;
       speedY = 0;
     }
   }
   
-  private int changeTargets(Field field)
-  {
+  private int changeTargets(Field field){
     ArrayList<Entity> teamCopy;  
     Player p;
     
-    if(teamOne)
-    {
+    if(teamOne){
       //copies arraylist of Team2, and shuffles the order
       teamCopy = field.getTeam2();
       Collections.shuffle(teamCopy);
       
       //goes through the shuffled arraylist to find a player in valid territory
-      for (int i = 0; i < teamCopy.size(); i++)
-      {
+      for (int i = 0; i < teamCopy.size(); i++){
         p = (Player)teamCopy.get(i);
-        if (p.getX() < field.maxX / 2 && p.getJail() == false)
-        {
+        if (p.getX() < field.maxX / 2 && p.getJail() == false){
           this.targetted = true;
           return i;
         }
@@ -157,15 +140,12 @@ public class CatcherPlayer extends Player
       this.targetted = false;
       return -1;
     } 
-    else
-    {
+    else{
       teamCopy = field.getTeam1();
       Collections.shuffle(teamCopy);
-      for (int i = 0; i < teamCopy.size(); i++)
-      {
+      for (int i = 0; i < teamCopy.size(); i++){
         p = (Player)teamCopy.get(i);
-        if (p.getX() > field.maxX / 2  && p.getJail() == false)
-        {
+        if (p.getX() > field.maxX / 2  && p.getJail() == false){
           this.targetted = true;
           return i;
         }
@@ -176,32 +156,25 @@ public class CatcherPlayer extends Player
   }
   
   //verifies if the target being chased is still in the valid territory
-  private int verifyTarget(Field field, int verify)
-  {
+  private int verifyTarget(Field field, int verify){
     Player p;
-    if(teamOne)
-    {
+    if(teamOne){
       p = (Player)field.getTeam2().get(verify);
       //target not valid anymore, find a new target
-      if (field.getTeam2().get(verify).getX() > field.maxX / 2  || p.getJail() == true)
-      {
+      if (field.getTeam2().get(verify).getX() > field.maxX / 2  || p.getJail() == true){
         return changeTargets(field);
       }
       //target still valid, keep chasing
-      else
-      {
+      else{
         return verify;
       }
     }
-    else
-    {
+    else{
       p = (Player)field.getTeam1().get(verify);
-      if (field.getTeam1().get(verify).getX() < field.maxX / 2  || p.getJail() == true)
-      {
+      if (field.getTeam1().get(verify).getX() < field.maxX / 2  || p.getJail() == true){
         return changeTargets(field);
       }
-      else
-      {
+      else{
         return verify;
       }
     }
@@ -210,25 +183,19 @@ public class CatcherPlayer extends Player
   @Override
   public void update(Field field){}
   
-  
   @Override
-  public boolean equals(Object o)
-  {
-    if(o == null)
-    { 
+  public boolean equals(Object o){
+    if(o == null){ 
       System.err.println("null equals");
       return false;
-      
     }
-    if(o instanceof Player && this.getName().equals(((Player)o).getName()))
-    {
+    if(o instanceof Player && this.getName().equals(((Player)o).getName())){
       return true;
     }
     return false;
   }
   
-  public CatcherPlayer(String name, int number, String team,char symbol, int x, int y)
-  {
+  public CatcherPlayer(String name, int number, String team,char symbol, int x, int y){
     super(name, number, team, symbol, x, y);
     this.speedX = Math.random()*4;
     this.speedY = Math.random()*4;

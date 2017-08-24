@@ -1,58 +1,24 @@
-/* Code taken from http://www.cokeandcode.com/info/tut2d.html
- * (the packgage information was removed; otherwise no changes)
- */
+// Code taken from http://www.cokeandcode.com/info/tut2d.html
 
 import java.awt.Graphics;
 import java.awt.Image;
 
-/**
- * A sprite to be displayed on the screen. Note that a sprite
- * contains no state information, i.e. its just the image and 
- * not the location. This allows us to use a single sprite in
- * lots of different places without having to store multiple 
- * copies of the image.
- * 
- * @author Kevin Glass
- */
 public class Sprite {
- /** The image to be drawn for this sprite */
- private Image image;
+ private Image image;//sprite's image
  
- /**
-  * Create a new sprite based on an image
-  * 
-  * @param image The image that is this sprite
-  */
- public Sprite(Image image) {
+ public Sprite(Image image) {//create sprite
   this.image = image;
  }
  
- /**
-  * Get the width of the drawn sprite
-  * 
-  * @return The width in pixels of this sprite
-  */
- public int getWidth() {
+ public int getWidth() {//return sprite width
   return image.getWidth(null);
  }
 
- /**
-  * Get the height of the drawn sprite
-  * 
-  * @return The height in pixels of this sprite
-  */
- public int getHeight() {
+ public int getHeight() {//return sprite height
   return image.getHeight(null);
  }
  
- /**
-  * Draw the sprite onto the graphics context provided
-  * 
-  * @param g The graphics context on which to draw the sprite
-  * @param x The x location at which to draw the sprite
-  * @param y The y location at which to draw the sprite
-  */
- public void draw(Graphics g,int x,int y) {
+ public void draw(Graphics g,int x,int y) {//draw the sprite
   g.drawImage(image,x,y,null);
  }
 }

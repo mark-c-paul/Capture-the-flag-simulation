@@ -35,26 +35,21 @@ public abstract class Entity{
   public int getY() { return (int) this.y; }
  
 
-  public final void updatePosition(long time, Field field) throws EntityOutOfBoundsException
-  {
+  public final void updatePosition(long time, Field field) throws EntityOutOfBoundsException{
     this.x += (time * this.speedX) / TIME_SCALE;
     this.y += (time * this.speedY) / TIME_SCALE;
     
-    if (this.x > field.maxX /2)
-    {
+    if (this.x > field.maxX /2){
       this.left = true;
     }
-    else
-    {
+    else{
       this.left = false;
     }
     checkCoordinates(field);
   }
  
-  protected void checkCoordinates(Field field) throws EntityOutOfBoundsException
-  {
-    if (this.getX() > field.maxX-16 || this.getY() < field.minY  ||  this.getX() < field.minX ||  this.getY() > field.maxY-16)
-    {
+  protected void checkCoordinates(Field field) throws EntityOutOfBoundsException{
+    if (this.getX() > field.maxX-16 || this.getY() < field.minY  ||  this.getX() < field.minX ||  this.getY() > field.maxY-16){
       throw new EntityOutOfBoundsException(this.getX() + " " + this.getY());
     }
   }

@@ -15,7 +15,6 @@ public class Base extends Entity{
     return false;
   }
   
-  
   public Base(char symbol, int x, int y){
     super(symbol, x, y);
     speedX = speedY = 0;

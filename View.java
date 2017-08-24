@@ -45,7 +45,6 @@ public class View extends Canvas{
       }
     });
     
-    
     // create the buffering strategy which will allow AWT
     // to manage our accelerated graphics
     createBufferStrategy(2);
@@ -117,7 +116,6 @@ public class View extends Canvas{
     boolean game_on = true;  // game keeps playing when game_on is true
     String log     = "";    // output trace of game as it progresses
     int    tick    = 0;     // count units of "time" 
-    
     
     Field field = new Field();
     

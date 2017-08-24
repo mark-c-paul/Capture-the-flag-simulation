@@ -1,39 +1,18 @@
-/* taken from from http://www.cokeandcode.com/info/tut2d.html 
- * 
- * removed : package org.newdawn.spaceinvaders;
- * otherwise no changes
- */
+//code taken from from http://www.cokeandcode.com/info/tut2d.html 
 
-import java.awt.GraphicsConfiguration;
-import java.awt.GraphicsEnvironment;
-import java.awt.Image;
-import java.awt.Transparency;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
-
 import javax.imageio.ImageIO;
 
-/**
- * A resource manager for sprites in the game. Its often quite important
- * how and where you get your game resources from. In most cases
- * it makes sense to have a central resource loader that goes away, gets
- * your resources and caches them for future use.
- * <p>
- * [singleton]
- * <p>
- * @author Kevin Glass
- */
+
+ // A resource manager for sprites in the game.
 public class SpriteStore {
- /** The single instance of this class */
+  
  private static SpriteStore single = new SpriteStore();
- 
- /**
-  * Get the single instance of this class 
-  * 
-  * @return The single instance of this class
-  */
+
  public static SpriteStore get() {
   return single;
  }
@@ -41,12 +20,7 @@ public class SpriteStore {
  /** The cached sprite map, from reference to sprite instance */
  private HashMap<String, Sprite> sprites = new HashMap<String, Sprite>();
  
- /**
-  * Retrieve a sprite from the store
-  * 
-  * @param ref The reference to the image to use for the sprite
-  * @return A sprite instance containing an accelerate image of the request reference
-  */
+ // Retrieve a sprite from the store
  public Sprite getSprite(String ref) {
   // if we've already got the sprite in the cache
   // then just return the existing version
@@ -54,8 +28,7 @@ public class SpriteStore {
    return (Sprite) sprites.get(ref);
   }
   
-  // otherwise, go away and grab the sprite from the resource
-  // loader
+  // otherwise, go away and grab the sprite from the resource loader
   BufferedImage sourceImage = null;
   
   try {
@@ -89,14 +62,9 @@ public class SpriteStore {
   return sprite;
  }
  
- /**
-  * Utility method to handle resource loading failure
-  * 
-  * @param message The message to display on failure
-  */
+ //handle resource loading failure
  private void fail(String message) {
-  // we're pretty dramatic here, if a resource isn't available
-  // we dump the message and exit the game
+  // print message and exit the game
   System.err.println(message);
   System.exit(0);
  }

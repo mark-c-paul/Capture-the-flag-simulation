@@ -8,8 +8,7 @@ public class JailBreaker extends Player {
     boolean rush = false;
     Player p = (Player) field.getTeam1().get(0);
     
-    if (this.getJail() == false)
-    {
+    if (this.getJail() == false){
       if (this.getTeam().equals(p.getTeam())) {
         teamOne = true;
         jailPosition = field.getJail2Position();
@@ -25,10 +24,9 @@ public class JailBreaker extends Player {
       int x2 = jailPosition[0];
       int y2 = jailPosition[1];
       
-      if (this.getJail() == false)
-      {
+      if (this.getJail() == false){
         //Do a check for team 1
-        if (teamOne) {
+        if (teamOne){
           for (int i = 0; i < field.getTeam1().size(); i++){
             if(((Player)field.getTeam1().get(i)).getJail() == true && this.getJail() == false){ //Comrade in jail detected
               rush = true;
@@ -36,8 +34,7 @@ public class JailBreaker extends Player {
             }
           }
         } 
-        else
-        {
+        else{
           for (int i = 0; i < field.getTeam2().size(); i++){
             if(((Player)field.getTeam2().get(i)).getJail() == true && this.getJail() == false){ //Comrade in jail detected
               rush = true;
@@ -47,32 +44,26 @@ public class JailBreaker extends Player {
         }
       }
       
-      if (rush && this.getJail() == false)
-      {
+      if (rush && this.getJail() == false){
         m = (y2 - this.y) / (x2 - this.x);
         
         //Calculation of X/Y speeds using the slope and a max speed vector
         speedX = 2 / Math.sqrt(Math.pow(m,2) + 1);
         speedY = speedX * m;
       }
-      else
-      {
+      else{
         speedX = 0;
         speedY = 0;
       }
-      if (this.getJail() == false);
-      {
+      if (this.getJail() == false);{
         freeTeammate(this, field);
       }
-      
-      if (x > x2)
-      {
+      if (x > x2){
         speedX *= -1;
         speedY *= -1;
       }
     }
-    else
-    {
+    else{
       speedX = 0;
       speedY = 0;
     }
